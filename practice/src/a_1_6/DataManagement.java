@@ -9,7 +9,7 @@ import java.util.List;
  * [説明] <p>ArrayListを使ったデータ管理クラス。</p>
  * [補充] <p>特になし。</p>
  */
-public class DataOperation {
+public class DataManagement {
 	
 	private List<String> list = new ArrayList<>();
 	

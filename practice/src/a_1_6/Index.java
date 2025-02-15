@@ -17,16 +17,16 @@ public class Index {
 	public static void main(String[] args) {
 		
 		// データ管理クラス
-		DataOperation dataManagement = new DataOperation();
+		DataManagement dataManagement = new DataManagement();
 		// データ読み込みクラス
-		FileOperation fileManipulation = new FileOperation();
+		FileOperation fileOperation = new FileOperation();
 		// 文字列操作クラス
-		StringOperation manipulation = new StringOperation();
+		StringOperation stringOperation = new StringOperation();
 		
 		// メソッド呼び出す
 		dataManagement.logic();
-		manipulation.logic();
-		fileManipulation.logic();
+		stringOperation.logic();
+		fileOperation.logic();
 		
 		
 	}
