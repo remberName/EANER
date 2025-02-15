@@ -1,4 +1,4 @@
-package a_1_7;
+package a_1_7.user;
 /**
  * [概要] <p>ユーザーDTOクラス。</p>
  * [説明] <p>ユーザーDTO。</p>

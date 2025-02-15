@@ -1,6 +1,6 @@
-package a_1_7;
+package a_1_7.user;
 
-import java.util.List;
+import a_1_7.management.UserManagement;
 
 /**
  * [概要] <p>ログインクラス。</p>
@@ -15,29 +15,11 @@ public class UserLogin {
 	 * [補充] <p>特になし。</p>
 	 *
 	 * @param userName ユーザー名
-	 * @param suerPassword ユーザーpsw
+	 * @param pwd ユーザーpwd
 	 * @return ログインDTO
 	 */
-	public LoginDto userLogin(String userName,String suerPassword) {
-		
-		// ユーザー管理クラスからユーザー情報マップを取って、ループする
-		List<UserDto> userDtoList = DataScoure.userInfo.values().stream().toList();
-		for (UserDto userDto : userDtoList) {
-
-			// ユーザー名によって、ユーザーIdを探す
-			if (userDto.getUserName().equals(userName)) {
-				System.out.println(userDto.getUserName());
-				// ユーザーIdによって、ログイン情報マップからパスワードを検証する
-				if (DataScoure.loginInfo.get(userDto.getUserId()).getPassword().equals(suerPassword)) {
-
-					// 検証通った場合、 ログインDTODTOを戻す
-					return DataScoure.loginInfo.get(userDto.getUserId());
-				}
-			}
-		}
-
-		// ログインできない場合はnullを戻す
-		return null;
+	public LoginDto userLogin(String userName,String pwd) {
+		return UserManagement.getUserInfo(userName, pwd);
 	}
 	
 	/**
@@ -52,6 +34,4 @@ public class UserLogin {
 		// ユーザーIdによって、管理者に判断する、ユーザーIdは０の場合は管理者になる、tureを戻す
 		return loginDto.getUserId() == 0 ? true : false;
 	}
-
-
 }

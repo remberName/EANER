@@ -2,6 +2,9 @@ package a_1_7;
 
 import java.util.Scanner;
 
+import a_1_7.user.LoginDto;
+import a_1_7.user.UserLogin;
+
 /**
  * [概要] <p>プログラム入口。</p>
  * [説明] <p>プログラムの入口。</p>
@@ -22,9 +25,6 @@ public class Index {
 		UserLogin userLogin = new UserLogin();
 		// 操作クラス
 		OperationProcess operationProcess = new OperationProcess();
-
-		// 初期化
-		operationProcess.init();
 
 		try (Scanner scaner = new Scanner(System.in)) {
 			do {

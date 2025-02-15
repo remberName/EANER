@@ -1,7 +1,10 @@
-package a_1_7;
+package a_1_7.management;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import a_1_7.user.LoginDto;
+import a_1_7.user.UserDto;
 
 /**
  * [概要] <p>ユーザー管理クラス。</p>
@@ -17,14 +20,14 @@ public class UserManagement {
 	 *
 	 * @param userDto 追加されたいユーザ一
 	 */
-	public void addUser(UserDto userDto) {
+	public static void addUser(UserDto userDto) {
 
 		// ユーザーIdを取る
-		int userId = DataScoure.userInfo.size();
+		int userId = DataSource.userInfo.size();
 
 		if (!checkUser(userDto)) {
 			// ユーザー追加
-			DataScoure.userInfo.put(userId, userDto);
+			DataSource.userInfo.put(userId, userDto);
 		} else {
 			System.out.println("ユーザー存在しています");
 		}
@@ -38,16 +41,16 @@ public class UserManagement {
 	 *
 	 * @return 整理したリスト
 	 */
-	private List<String[]> showUser() {
+	private static List<String[]> showUser() {
 		
 		List<String[]> list = new ArrayList<>();
 		// 戻すデータ整理する
-		for (int index : DataScoure.userInfo.keySet()) {
+		for (int index : DataSource.userInfo.keySet()) {
 			String[] s = { String.valueOf(index), // index
-					DataScoure.userInfo.get(index).getUserName(), // ユーザー名
-					DataScoure.userInfo.get(index).getUserSex(), // 性別
-					String.valueOf(DataScoure.userInfo.get(index).getUserAge()), // 年齢
-					DataScoure.userInfo.get(index).getUserAddress() // アドレス
+					DataSource.userInfo.get(index).getUserName(), // ユーザー名
+					DataSource.userInfo.get(index).getUserSex(), // 性別
+					String.valueOf(DataSource.userInfo.get(index).getUserAge()), // 年齢
+					DataSource.userInfo.get(index).getUserAddress() // アドレス
 			};
 
 			list.add(s);
@@ -61,7 +64,7 @@ public class UserManagement {
 	 * [補充] <p>特になし。</p>
 	 *
 	 */
-	public void userToString() {
+	public static void userToString() {
 
 		//　整理したリストを取る
 		List<String[]> userList = showUser();
@@ -79,11 +82,11 @@ public class UserManagement {
 	 *
 	 * @param userId 削除したいユーザーId
 	 */
-	public void deleteUser(int userId) {
+	public static void deleteUser(int userId) {
 
 		if (getUserName(userId) != null) {
 			// マップからユーザー削除
-			DataScoure.userInfo.keySet().removeIf(key -> key == userId);
+			DataSource.userInfo.keySet().removeIf(key -> key == userId);
 		} else {
 			// Id存在しない
 			System.out.println("管理者削除できない");
@@ -98,13 +101,13 @@ public class UserManagement {
 	 *
 	 * @param userDto ユーザー情報
 	 */
-	public void updateUser(UserDto userDto) {
+	public static void updateUser(UserDto userDto) {
 		
 		// ユーザーIdを取る
 		int userId = userDto.getUserId();
 
 		// ユーザーを更新
-		DataScoure.userInfo.put(userId, userDto);
+		DataSource.userInfo.put(userId, userDto);
 
 	}
 	
@@ -116,11 +119,11 @@ public class UserManagement {
 	 * @param userId　ユーザーId
 	 * @return　ユーザー名
 	 */
-	public String getUserName(int userId) {
+	public static String getUserName(int userId) {
 		
 		// ユーザーIdによって、ユーザー名を取る
-		if (DataScoure.userInfo.get(userId) != null) {
-			return DataScoure.userInfo.get(userId).getUserName();
+		if (DataSource.userInfo.get(userId) != null) {
+			return DataSource.userInfo.get(userId).getUserName();
 		}
 
 		// 存在しない場合、nullを戻す
@@ -135,11 +138,11 @@ public class UserManagement {
 	 * @param userName　ユーザー名
 	 * @return　ユーザーId
 	 */
-	public int getUserId(String userName) {
+	public static  int getUserId(String userName) {
 		
 		// ユーザー名によって、ユーザーIdを取る
-		for (int index : DataScoure.userInfo.keySet()) {
-			if (DataScoure.userInfo.get(index).getUserName().equals(userName)) {
+		for (int index : DataSource.userInfo.keySet()) {
+			if (DataSource.userInfo.get(index).getUserName().equals(userName)) {
 				return index;
 			}
 		}
@@ -156,14 +159,14 @@ public class UserManagement {
 	 * @param userDto　ユーザーDTO
 	 * @return　判断結果
 	 */
-	private boolean checkUser(UserDto userDto) {
+	private static boolean checkUser(UserDto userDto) {
 		
 		// ユーザー存在フラグ
 		boolean haveUser = false;
 
 		// ユーザー存在するかどうか判断
-		for (int index : DataScoure.userInfo.keySet()) {
-			if (DataScoure.userInfo.get(index).getUserName().equals(userDto.getUserName())) {
+		for (int index : DataSource.userInfo.keySet()) {
+			if (DataSource.userInfo.get(index).getUserName().equals(userDto.getUserName())) {
 				// 存在した場合
 				haveUser = true;
 			}
@@ -172,4 +175,30 @@ public class UserManagement {
 		return haveUser;
 	}
 	
+	/**
+	 * ユーザ情報取得
+	 * @param userName ユーザ名
+	 * @param pwd ユーザパスワード
+	 * @return ユーザログイン情報
+	 */
+	public static LoginDto getUserInfo(String userName, String pwd) {
+		
+		// ユーザー管理クラスからユーザー情報マップを取って、ループする
+		List<UserDto> userDtoList = DataSource.userInfo.values().stream().toList();
+		for (UserDto userDto : userDtoList) {
+
+			// ユーザー名によって、ユーザーIdを探す
+			if (userDto.getUserName().equals(userName)) {
+				System.out.println(userDto.getUserName());
+				// ユーザーIdによって、ログイン情報マップからパスワードを検証する
+				if (DataSource.loginInfo.get(userDto.getUserId()).getPassword().equals(pwd)) {
+						// 検証通った場合、 ログインDTOを戻す
+						return DataSource.loginInfo.get(userDto.getUserId());
+				}
+			}
+		}
+
+		// ログインできない場合はnullを戻す
+		return null;
+	}
 }

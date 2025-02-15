@@ -4,6 +4,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+import a_1_7.management.TaskManagement;
+import a_1_7.management.UserManagement;
+import a_1_7.task.TaskDto;
+import a_1_7.user.LoginDto;
+import a_1_7.user.UserDto;
+
 /**
  * [概要] <p>操作クラス。</p>
  * [説明] <p>操作流れクラス。</p>
@@ -11,18 +17,6 @@ import java.util.Scanner;
  */
 public class OperationProcess {
 	
-	// ユーザー管理クラス
-	private UserManagement userManagement = new UserManagement();
-	// タスク管理クラス
-	private TaskManagement taskManagement = new TaskManagement();
-
-	// データ初期化
-	public void init() {
-		DataScoure.loginInfoInit();
-		DataScoure.taskInfoInit();
-		DataScoure.userInfoInit();
-	}
-
 	/**
 	 * [概要] <p>管理者操作流れ。</p>
 	 * [説明] <p>管理者操作流れ。</p>
@@ -68,9 +62,9 @@ public class OperationProcess {
 					System.out.print("アドレス:");
 					userDto.setUserAddress(scaner.next());
 
-					userManagement.addUser(userDto);
+					UserManagement.addUser(userDto);
 					// user展示
-					userManagement.userToString();
+					UserManagement.userToString();
 					break;
 
 				// ユーザー削除
@@ -78,9 +72,9 @@ public class OperationProcess {
 					System.out.print("削除したいユーザー番号:");
 					int deleteId = scaner.nextInt();
 
-					userManagement.deleteUser(deleteId);
+					UserManagement.deleteUser(deleteId);
 					// user展示
-					userManagement.userToString();
+					UserManagement.userToString();
 					break;
 
 				// ユーザー更新
@@ -102,14 +96,14 @@ public class OperationProcess {
 					System.out.print("アドレス:");
 					updateUserDto.setUserAddress(scaner.next());
 
-					userManagement.updateUser(updateUserDto);
+					UserManagement.updateUser(updateUserDto);
 					// user展示
-					userManagement.userToString();
+					UserManagement.userToString();
 					break;
 
 				// ユーザー展示
 				case 4:
-					userManagement.userToString();
+					UserManagement.userToString();
 					break;
 
 				// タスク追加
@@ -137,9 +131,9 @@ public class OperationProcess {
 					System.out.print("実施者名前:");
 					String userName = scaner.next();
 
-					taskManagement.addTask(taskDto, userName);
+					TaskManagement.addTask(taskDto, userName);
 					// タスク展示
-					taskManagement.taskToString();
+					TaskManagement.taskToString();
 					break;
 
 				// タスク削除
@@ -147,9 +141,9 @@ public class OperationProcess {
 					System.out.print("削除したいタスク番号:");
 					int taskId = scaner.nextInt();
 
-					taskManagement.deleteTask(taskId);
+					TaskManagement.deleteTask(taskId);
 					// タスク展示
-					taskManagement.taskToString();
+					TaskManagement.taskToString();
 					break;
 
 				// タスク更新
@@ -180,14 +174,14 @@ public class OperationProcess {
 					System.out.print("実施者名前:");
 					String updateUserName = scaner.next();
 
-					taskManagement.updateTask(updateTaskId, updateTaskDto, updateUserName);
+					TaskManagement.updateTask(updateTaskId, updateTaskDto, updateUserName);
 					// タスク展示
-					taskManagement.taskToString();
+					TaskManagement.taskToString();
 					break;
 
 				// タスク展示
 				case 8:
-					taskManagement.taskToString();
+					TaskManagement.taskToString();
 					break;
 
 				// プログラム終了
@@ -231,13 +225,13 @@ public class OperationProcess {
 				// ユーザー展示
 				case 1:
 					// user展示
-					userManagement.userToString();
+					UserManagement.userToString();
 					break;
 
 				// タスク展示
 				case 2:
 					// タスク展示
-					taskManagement.taskToString();
+					TaskManagement.taskToString();
 					break;
 
 				// プログラム終了
