@@ -17,11 +17,11 @@ public class Index {
 	public static void main(String[] args) {
 		
 		// データ管理クラス
-		DataManagement dataManagement = new DataManagement();
+		DataOperation dataManagement = new DataOperation();
 		// データ読み込みクラス
 		FileOperation fileManipulation = new FileOperation();
 		// 文字列操作クラス
-		StringManipulation manipulation = new StringManipulation();
+		StringOperation manipulation = new StringOperation();
 		
 		// メソッド呼び出す
 		dataManagement.logic();
