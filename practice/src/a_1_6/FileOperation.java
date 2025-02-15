@@ -41,8 +41,8 @@ public class FileOperation {
 	 */
 	private void readFile() {
 		
-		// ファイルのURL
-		String URL = "C:\\Users\\share\\git\\Eaner-\\practice\\a\\dataFile";
+		// プロジェクトの絶対パスを取って、ファイルのURLを作成
+		String URL = System.getProperty("user.dir")+"/resource/dataFile.csv";
 		
 		// ファイルを読み取り
 		File file = new File(URL);
