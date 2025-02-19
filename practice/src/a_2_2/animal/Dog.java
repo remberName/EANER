@@ -1,4 +1,4 @@
-package a_2_2;
+package a_2_2.animal;
 
 /**
  * [概要] <p>犬クラス。</p>

@@ -1,4 +1,4 @@
-package a_2_2;
+package a_2_2.person;
 
 import java.util.Objects;
 

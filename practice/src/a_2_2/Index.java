@@ -1,5 +1,16 @@
 package a_2_2;
 
+import a_2_2.Pet.Pet;
+import a_2_2.Pet.Pig;
+import a_2_2.Pet.Squirrel;
+import a_2_2.animal.Animal;
+import a_2_2.animal.Cat;
+import a_2_2.animal.Dog;
+import a_2_2.person.Person;
+import a_2_2.shape.Circle;
+import a_2_2.shape.Rectangle;
+import a_2_2.shape.Shape;
+
 /**
  * [概要] <p>プログラム入口。</p>
  * [説明] <p>プログラム入口。</p>

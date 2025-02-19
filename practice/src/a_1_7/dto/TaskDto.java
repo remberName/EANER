@@ -1,4 +1,4 @@
-package a_1_7;
+package a_1_7.dto;
 
 import java.time.LocalDate;
 

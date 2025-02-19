@@ -1,4 +1,4 @@
-package a_2_2;
+package a_2_2.shape;
 
 /**
  * [概要] <p>形抽象クラス。</p>

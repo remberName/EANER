@@ -1,5 +1,13 @@
 package a_2_1;
 
+import a_2_1.animal.Animal;
+import a_2_1.animal.Bird;
+import a_2_1.animal.Dog;
+import a_2_1.person.Person;
+import a_2_1.shape.Circle;
+import a_2_1.shape.Rectangle;
+import a_2_1.shape.Shape;
+
 /**
  * [概要] <p>入口クラス。</p>
  * [説明] <p>入口クラス。</p>

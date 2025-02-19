@@ -1,8 +1,12 @@
-package a_1_7;
+package a_1_7.management;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+
+import a_1_7.dto.LoginDto;
+import a_1_7.dto.TaskDto;
+import a_1_7.dto.UserDto;
 /**
  * [概要] <p>データクラス。</p>
  * [説明] <p>データの作成と初期化。</p>
@@ -14,19 +18,19 @@ public class DataScoure {
 	 * ユーザー情報
 	 * Map<ユーザーID,ユーザー情報DTO>
 	 */
-	public static Map<Integer, UserDto> userInfo = new HashMap<Integer, UserDto>();
+	private final static Map<Integer, UserDto> userInfo = new HashMap<Integer, UserDto>();
 	
 	/**
 	 * ログイン情報
 	 * Map<ユーザーId,ログインDTO>
 	 */
-	public static Map<Integer,LoginDto> loginInfo = new HashMap<Integer,LoginDto>();
+	private final static Map<Integer,LoginDto> loginInfo = new HashMap<Integer,LoginDto>();
 	
 	/**
 	 * 任務情報マップ
 	 * Map<ユーザーId,任務DTO>
 	 */
-	public static Map<Integer,TaskDto> taskInfo = new HashMap<Integer,TaskDto>();
+	private final static Map<Integer,TaskDto> taskInfo = new HashMap<Integer,TaskDto>();
 
 	/**
 	 * [概要] <p>初期化。</p>
@@ -34,7 +38,7 @@ public class DataScoure {
 	 * [補充] <p>。</p>
 	 *
 	 */
-	public static void userInfoInit() {
+	private static void userInfoInit() {
 		userInfo.put(0, new UserDto(0, "admin", 20, "男", "東京"));
 		userInfo.put(1, new UserDto(1, "yamato", 20, "女", "埼玉"));
 		userInfo.put(2, new UserDto(2, "saitou", 20, "男", "千葉"));
@@ -47,7 +51,7 @@ public class DataScoure {
 	 * [補充] <p>特になし。</p>
 	 *
 	 */
-	public static void taskInfoInit() {
+	private static void taskInfoInit() {
 		taskInfo.put(0, new TaskDto(1, "数学", 2, LocalDate.of(2025, 2, 12), LocalDate.of(2025, 2, 13), LocalDate.of(2025, 2, 15)));
 		taskInfo.put(1, new TaskDto(1, "国語", 2, LocalDate.of(2025, 2, 13), LocalDate.of(2025, 2, 13), LocalDate.of(2025, 2, 15)));
 		taskInfo.put(2, new TaskDto(1, "科学", 3, LocalDate.of(2025, 2, 14), LocalDate.of(2025, 2, 13), LocalDate.of(2025, 2, 15)));
@@ -66,10 +70,32 @@ public class DataScoure {
 	 * [補充] <p>特になし。</p>
 	 *
 	 */
-	public static void loginInfoInit() {
+	private static void loginInfoInit() {
 		loginInfo.put(0, new LoginDto(0, "admin", "admin"));
 		loginInfo.put(1, new LoginDto(1, "桜", "sakura"));
 		loginInfo.put(2, new LoginDto(2, "花", "hana"));
 		loginInfo.put(3, new LoginDto(3, "陰陽師", "onmyouji"));
 	}
+	
+	/**
+	 * データ初期化
+	 */
+	static {
+		userInfoInit();
+		loginInfoInit();
+		taskInfoInit();
+	}
+
+	public static Map<Integer, UserDto> getUserInfo() {
+		return userInfo;
+	}
+
+	public static Map<Integer, LoginDto> getLoginInfo() {
+		return loginInfo;
+	}
+
+	public static Map<Integer, TaskDto> getTaskInfo() {
+		return taskInfo;
+	}
+
 }

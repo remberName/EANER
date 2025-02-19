@@ -1,4 +1,4 @@
-package a_2_1;
+package a_2_1.animal;
 
 /**
  * [概要] <p>Flyableインターフェース。</p>

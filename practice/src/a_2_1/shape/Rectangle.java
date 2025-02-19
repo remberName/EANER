@@ -1,4 +1,4 @@
-package a_2_1;
+package a_2_1.shape;
 
 /**
  * [概要] <p>Rectangleクラス。</p>

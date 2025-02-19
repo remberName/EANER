@@ -1,4 +1,4 @@
-package a_2_1;
+package a_2_1.person;
 /**
  * [概要] <p>Personクラス。</p>
  * [説明] <p>Personクラス。</p>

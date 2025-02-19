@@ -2,6 +2,9 @@ package a_1_7;
 
 import java.util.Scanner;
 
+import a_1_7.dto.LoginDto;
+import a_1_7.management.UserManagement;
+
 /**
  * [概要] <p>プログラム入口。</p>
  * [説明] <p>プログラムの入口。</p>
@@ -18,13 +21,8 @@ public class Index {
 	 */
 	public static void main(String[] args) {
 
-		// ログイン情報クラス
-		UserLogin userLogin = new UserLogin();
 		// 操作クラス
 		OperationProcess operationProcess = new OperationProcess();
-
-		// 初期化
-		operationProcess.init();
 
 		try (Scanner scaner = new Scanner(System.in)) {
 			do {
@@ -42,13 +40,13 @@ public class Index {
 				String userPassword = scaner.next();
 
 				// ログインする
-				LoginDto loginDto = userLogin.userLogin(userName, userPassword);
+				LoginDto loginDto = UserManagement.userLogin(userName, userPassword);
 
 				// ログインできる場合
 				if (loginDto != null) {
 
 					// 管理者かどうか判断
-					boolean isManagement = userLogin.isManager(loginDto);
+					boolean isManagement = UserManagement.isManager(loginDto);
 
 					if (isManagement) {
 						// 管理者の場合
