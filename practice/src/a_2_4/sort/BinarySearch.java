@@ -7,6 +7,17 @@ package a_2_4.sort;
  */
 public class BinarySearch {
 
+	/**
+	 * [概要] <p>二分探索メソッド。</p>
+	 * [説明] <p>二分探索メソッド。</p>
+	 * [補充] <p>特になし。</p>
+	 *
+	 * @param list　ソート後配列
+	 * @param target　目標要素
+	 * @param start　開始index
+	 * @param end　終了index
+	 * @return 要素index
+	 */
 	public int binarySeach(int[] list, int target, int start, int end) {
 
 		// 見つけない
