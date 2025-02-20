@@ -21,9 +21,9 @@ public class TaskManagement {
 	 */
 	public static void deleteTask(int taskId) {
 
-		if (DataScoure.getTaskInfo().get(taskId) != null) {
+		if (DataSource.getTaskInfo().get(taskId) != null) {
 			// Idによって、タスクを削除
-			DataScoure.getTaskInfo().remove(taskId);
+			DataSource.getTaskInfo().remove(taskId);
 		} else {
 			System.out.println("タスク存在しません");
 		}
@@ -41,12 +41,12 @@ public class TaskManagement {
 	 */
 	public static void updateTask(int taskId, TaskDto taskDto, String userName) {
 
-		if (DataScoure.getTaskInfo().get(taskId) != null) {
+		if (DataSource.getTaskInfo().get(taskId) != null) {
 			// ユーザー名によって、ユーザーIdを取る
 			taskDto.setUserId(UserManagement.getUserId(userName));
 
 			// Idによって、タスクを更新
-			DataScoure.getTaskInfo().put(taskId, taskDto);
+			DataSource.getTaskInfo().put(taskId, taskDto);
 		} else {
 			System.out.println("タスク存在しません");
 		}
@@ -64,10 +64,10 @@ public class TaskManagement {
 
 		List<String[]> list = new ArrayList<>();
 		// 戻すデータ整理する
-		for (int index : DataScoure.getTaskInfo().keySet()) {
+		for (int index : DataSource.getTaskInfo().keySet()) {
 
 			// タスク対象を取る
-			TaskDto taskDto = DataScoure.getTaskInfo().get(index);
+			TaskDto taskDto = DataSource.getTaskInfo().get(index);
 
 			// データを統合する
 			String[] s = { String.valueOf(index), // index
@@ -99,9 +99,9 @@ public class TaskManagement {
 			taskDto.setUserId(UserManagement.getUserId(userName));
 
 			// Idを取る
-			int index = DataScoure.getTaskInfo().size();
+			int index = DataSource.getTaskInfo().size();
 			// タスクを追加する
-			DataScoure.getTaskInfo().put(index, taskDto);
+			DataSource.getTaskInfo().put(index, taskDto);
 		} else {
 			System.out.println("ユーザー存在しません");
 		}

@@ -12,7 +12,7 @@ import a_1_7.dto.UserDto;
  * [説明] <p>データの作成と初期化。</p>
  * [補充] <p>特になし。</p>
  */
-public class DataScoure {
+public class DataSource {
 	
 	/**
 	 * ユーザー情報
