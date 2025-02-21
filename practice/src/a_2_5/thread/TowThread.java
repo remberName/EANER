@@ -1,4 +1,6 @@
-package a_2_5;
+package a_2_5.thread;
+
+import a_2_5.datasource.DataSource;
 
 /**
  * [概要] <p>二つスレッド交互クラス。</p>

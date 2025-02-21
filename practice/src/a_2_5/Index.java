@@ -2,6 +2,9 @@ package a_2_5;
 
 import java.util.concurrent.ExecutionException;
 
+import a_2_5.thread.ThreadPoolPractise;
+import a_2_5.thread.TowThread;
+
 /**
  * [概要] <p>入口クラス。</p>
  * [説明] <p>入口クラス。</p>

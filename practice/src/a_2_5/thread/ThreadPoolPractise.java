@@ -1,4 +1,4 @@
-package a_2_5;
+package a_2_5.thread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import a_2_5.datasource.DataSource;
 
 /**
  * [概要] <p>スレッドプール練習クラス。</p>
