@@ -16,7 +16,6 @@ public class BankAccount {
 	private Double balance = 0.00;
 	
 	public BankAccount(Double balance) {
-		super();
 		this.balance = balance;
 	}
 
@@ -41,7 +40,7 @@ public class BankAccount {
 			// 残高より少ない場合
 			this.balance = this.balance - amount;
 			
-			// 数字大きすぎるため、BigDecimalに転換する
+			// 数字大きすぎるため、BigDecimalに変換する
 			BigDecimal bigDecimal = new BigDecimal(balance);
 			// 引き出した後残高
 			System.out.println("残高：" +bigDecimal.toPlainString());
