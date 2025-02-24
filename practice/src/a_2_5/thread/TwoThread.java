@@ -7,7 +7,7 @@ import a_2_5.datasource.DataSource;
  * [説明] <p>二つスレッド交互クラス。</p>
  * [補充] <p>特になし。</p>
  */
-public class TowThread {
+public class TwoThread {
 
 	/**
 	 * 同期用のロックオブジェクト
@@ -26,7 +26,7 @@ public class TowThread {
 	 * [説明] <p>リストの要素は１をプラス。</p>
 	 * [補充] <p>特になし。</p>
 	 */
-	public int towThread() {
+	public int runTwoThread() {
 		
 		// スレッド1
 		Thread thread1 = new Thread(new Runnable() {
@@ -35,8 +35,8 @@ public class TowThread {
 			public void run() {
 
 				synchronized (lock) {
-					for (int i = 0; i < DataSource.getList().size(); i++) {
-						int num = DataSource.getList().get(i);
+					for (int i = 0; i < DataSource.getThreadInteractionList().size(); i++) {
+						int num = DataSource.getThreadInteractionList().get(i);
 						if (num % 2 != 0) {
 							System.out.println(num + "は奇数");
 							System.out.println("sumの値："+sum);
@@ -45,13 +45,12 @@ public class TowThread {
 							// スレッド2を通知
 							lock.notify();
 
-							// 最後の要素（0）ではない場合はスレッド待ち
-							if (num != 0) {
+							// 最後の要素ではない場合はスレッド待ち
+							if (i == DataSource.getThreadInteractionList().size() - 1) {
 								try {
 									lock.wait();
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+									System.out.println("InterruptedException異常発生しました。");
 								}
 							}
 						}
@@ -68,8 +67,8 @@ public class TowThread {
 
 				// スレッドをブロックする
 				synchronized (lock) {
-					for (int i = 0; i < DataSource.getList().size(); i++) {
-						int num = DataSource.getList().get(i);
+					for (int i = 0; i < DataSource.getThreadInteractionList().size(); i++) {
+						int num = DataSource.getThreadInteractionList().get(i);
 						if (num % 2 == 0) {
 							System.out.println(num + "は偶数");
 							System.out.println("sumの値："+sum);
@@ -78,13 +77,12 @@ public class TowThread {
 							// スレッド1に通知
 							lock.notify();
 
-							// 最後の要素（0）ではない場合はスレッド待ち
-							if (num != 0) {
+							// 最後の要素ではない場合はスレッド待ち
+							if (i == DataSource.getThreadInteractionList().size() - 1) {
 								try {
 									lock.wait();
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+									System.out.println("InterruptedException異常発生しました。");
 								}
 							}
 						}

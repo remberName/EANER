@@ -15,7 +15,7 @@ public class DataSource {
 	/**
 	 * 二つスレッド交互データ
 	 */
-	private static List<Integer> list = new ArrayList<>() {
+	private static List<Integer> threadInteractionList = new ArrayList<>() {
 		{
 			add(1);
 			add(2);
@@ -33,8 +33,8 @@ public class DataSource {
 	/**
 	 * スレッドプール練習データ
 	 */
-	private static int[] numbers = { 10, 12, 15, 16, 1, 85, 7, 552, 8, 5, 9, 556, 4 };
-	private static List<Integer> list2 = new ArrayList<>() {
+	private static int[] threadPoolNumbers = { 10, 12, 15, 16, 1, 85, 7, 552, 8, 5, 9, 556, 4 };
+	private static List<Integer> threadPoolList = new ArrayList<>() {
 		{
 			add(10);
 			add(12);
@@ -49,7 +49,7 @@ public class DataSource {
 			add(11);
 		}
 	};
-	private static Set<Integer> set = new HashSet<>() {
+	private static Set<Integer> threadPoolSet = new HashSet<>() {
 		{
 			add(10);
 			add(20);
@@ -65,20 +65,20 @@ public class DataSource {
 		}
 	};
 
-	public static List<Integer> getList() {
-		return list;
+	public static List<Integer> getThreadInteractionList() {
+		return threadInteractionList;
 	}
 
-	public static int[] getNumbers() {
-		return numbers;
+	public static int[] getThreadPoolNumbers() {
+		return threadPoolNumbers;
 	}
 
-	public static List<Integer> getList2() {
-		return list2;
+	public static List<Integer> getThreadPoolList() {
+		return threadPoolList;
 	}
 
-	public static Set<Integer> getSet() {
-		return set;
+	public static Set<Integer> getThreadPoolSet() {
+		return threadPoolSet;
 	}
 	
 }

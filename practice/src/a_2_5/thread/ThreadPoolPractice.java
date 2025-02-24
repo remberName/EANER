@@ -15,7 +15,7 @@ import a_2_5.datasource.DataSource;
  * [説明] <p>スレッドプール練習クラス。</p>
  * [補充] <p>特になし。</p>
  */
-public class ThreadPoolPractise{
+public class ThreadPoolPractice{
 	
 	/**
 	 * [概要] <p>スレッドプール非同期実行メソッド。</p>
@@ -25,14 +25,14 @@ public class ThreadPoolPractise{
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	public void threadPoolPractiseAsynchronous() throws InterruptedException, ExecutionException {
+	public void threadPoolPracticeAsynchronous(){
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 		// スレッド１
 		Callable<String> task1 = () -> {
 			System.out.println("非同期task1開始");
-			for (int i = 0; i < DataSource.getList2().size(); i++) {
-				DataSource.getList2().set(i, i);
+			for (int i = 0; i < DataSource.getThreadPoolList().size(); i++) {
+				DataSource.getThreadPoolList().set(i, i);
 			}
 			return "非同期task1終了";
 		};
@@ -40,8 +40,8 @@ public class ThreadPoolPractise{
 		// スレッド２
 		Callable<String> task2 = () -> {
 			System.out.println("非同期task2開始");
-			for (int i = 0; i < DataSource.getNumbers().length; i++) {
-				DataSource.getNumbers()[i] = DataSource.getNumbers()[i] * 2;
+			for (int i = 0; i < DataSource.getThreadPoolNumbers().length; i++) {
+				DataSource.getThreadPoolNumbers()[i] = DataSource.getThreadPoolNumbers()[i] * 2;
 			}
 			return "非同期task2終了";
 		};
@@ -50,7 +50,7 @@ public class ThreadPoolPractise{
 		Callable<String> task3 = () -> {
 			System.out.println("非同期task3開始");
 			int sum = 0;
-			for (int num : DataSource.getSet()) {
+			for (int num : DataSource.getThreadPoolSet()) {
 				sum += num;
 			}
 			Thread.sleep(6000);
@@ -98,14 +98,21 @@ public class ThreadPoolPractise{
 		Future<String> future8 = executorService.submit(task8);
 
 		// 実行終了出力
-		System.out.println(future1.get());
-		System.out.println(future2.get());
-		System.out.println(future3.get());
-		System.out.println(future4.get());
-		System.out.println(future5.get());
-		System.out.println(future6.get());
-		System.out.println(future7.get());
-		System.out.println(future8.get());
+		try {
+			System.out.println(future1.get());
+			System.out.println(future2.get());
+			System.out.println(future3.get());
+			System.out.println(future4.get());
+			System.out.println(future5.get());
+			System.out.println(future6.get());
+			System.out.println(future7.get());
+			System.out.println(future8.get());
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException異常発生しました。");
+		} catch (ExecutionException e) {
+			System.out.println("ExecutionException異常発生しました。");
+		}
+		
 
 		// プールをシャットダウン
 		executorService.shutdown();
@@ -119,14 +126,14 @@ public class ThreadPoolPractise{
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	public void threadPoolPractiseBlocking() throws InterruptedException, ExecutionException {
+	public void threadPoolPractiseBlocking() {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 		// スレッド１
 		Callable<String> task1 = () -> {
 			System.out.println("同期task1開始");
-			for (int i = 0; i < DataSource.getList2().size(); i++) {
-				DataSource.getList2().set(i, i);
+			for (int i = 0; i < DataSource.getThreadPoolList().size(); i++) {
+				DataSource.getThreadPoolList().set(i, i);
 			}
 			return "同期task1終了";
 		};
@@ -134,8 +141,8 @@ public class ThreadPoolPractise{
 		// スレッド２
 		Callable<String> task2 = () -> {
 			System.out.println("同期task2開始");
-			for (int i = 0; i < DataSource.getNumbers().length; i++) {
-				DataSource.getNumbers()[i] = DataSource.getNumbers()[i] * 2;
+			for (int i = 0; i < DataSource.getThreadPoolNumbers().length; i++) {
+				DataSource.getThreadPoolNumbers()[i] = DataSource.getThreadPoolNumbers()[i] * 2;
 			}
 			return "同期task2終了";
 		};
@@ -144,7 +151,7 @@ public class ThreadPoolPractise{
 		Callable<String> task3 = () -> {
 			System.out.println("同期task3開始");
 			int sum = 0;
-			for (int num : DataSource.getSet()) {
+			for (int num : DataSource.getThreadPoolSet()) {
 				sum += num;
 			}
 			return "同期task3終了,sum:" + sum;
@@ -193,20 +200,24 @@ public class ThreadPoolPractise{
 		};
 
 		// スレッド同期実行「同期：順番である、他のスレッド実行終了まで待ち」
-		List<Future<String>> result = executorService.invokeAll(list);
+		
+		try {
+			List<Future<String>> result = executorService.invokeAll(list);
+			result.forEach(future -> {
+					try {
+						System.out.println(future.get());
+					} catch (InterruptedException e) {
+						System.out.println("InterruptedException異常発生しました。");
+					} catch (ExecutionException e) {
+						System.out.println("ExecutionException異常発生しました。");
+					}
+			});
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException異常発生しました。");
+		}
 
 		// 実行終了出力
-		result.forEach(future -> {
-			try {
-				System.out.println(future.get());
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
+		
 
 		// プールをシャットダウン
 		executorService.shutdown();
