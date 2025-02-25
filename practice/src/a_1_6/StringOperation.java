@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * [説明] <p>文字列操作クラス。</p>
  * [補充] <p>特になし。</p>
  */
-public class StringManipulation {
+public class StringOperation {
 	
 	/**
 	 * [概要] <p>ロジックメソッド。</p>

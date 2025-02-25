@@ -13,10 +13,12 @@ import java.util.List;
  * [説明] <p>ファイルを読み込み、データをリストに格納して出力するクラス。</p>
  * [補充] <p>特になし。</p>
  */
-public class FileManipulation {
+public class FileOperation {
 	
-	// データリスト
-	private List<String> list = new ArrayList<String>();
+	/**
+	 * 行データリスト
+	 */
+	private List<String> lineList = new ArrayList<>();
 	
 	/**
 	 * [概要] <p>ロジックメソッド。</p>
@@ -27,7 +29,7 @@ public class FileManipulation {
 	public void logic() {
 		// ァイルを読み込み、データをリストに格納メッソド
 		readFile();
-		// データ展示メソッド
+		// データh表示メソッド
 		showData();
 	}
 
@@ -39,20 +41,20 @@ public class FileManipulation {
 	 */
 	private void readFile() {
 		
-		// ファイルのURL
-		String URL = "C:\\Users\\share\\git\\Eaner-\\practice\\a\\dataFile";
+		// プロジェクトの絶対パスを取って、ファイルのURLを作成
+		String URL = System.getProperty("user.dir")+"/resource/dataFile.csv";
 		
 		// ファイルを読み取り
 		File file = new File(URL);
-		try(FileReader fileReader = new FileReader(file);
-				BufferedReader bufferedReader= new BufferedReader(fileReader)){
+		try (FileReader fileReader = new FileReader(file);
+				BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 			String line;
-			while((line = bufferedReader.readLine())!=null) {
-				
+			while ((line = bufferedReader.readLine()) != null) {
+
 				// リストにデータを入れる
-				list.add(line);
+				lineList.add(line);
 			}
-		}catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -67,6 +69,10 @@ public class FileManipulation {
 	 *
 	 */
 	private void showData() {
-		System.out.println("\nFileから読み取りデータ："+list.toString());
+		
+		System.out.println("\nFileから読み取りデータ：");
+
+		// リストを出力する
+		lineList.forEach(s -> System.out.println(s));
 	}
 }

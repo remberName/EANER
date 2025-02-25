@@ -19,14 +19,14 @@ public class Index {
 		// データ管理クラス
 		DataManagement dataManagement = new DataManagement();
 		// データ読み込みクラス
-		FileOperation fileManipulation = new FileOperation();
+		FileOperation fileOperation = new FileOperation();
 		// 文字列操作クラス
-		StringManipulation manipulation = new StringManipulation();
+		StringOperation stringOperation = new StringOperation();
 		
 		// メソッド呼び出す
 		dataManagement.logic();
-		manipulation.logic();
-		fileManipulation.logic();
+		stringOperation.logic();
+		fileOperation.logic();
 		
 		
 	}
